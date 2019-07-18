@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -25,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Fragment> al;
     MyFragmentPagerAdapter adapter;
-    ViewPager vPager;
+    ViewPager viewPager;
     Button btnLater;
     int reqCode = 12345;
+    Integer currentFragment;
 
 
 
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        vPager = findViewById(R.id.viewpager1);
+        viewPager = findViewById(R.id.viewpager1);
         btnLater = findViewById(R.id.btnLater);
 
         FragmentManager fm = getSupportFragmentManager();
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new MyFragmentPagerAdapter(fm, al);
 
-        vPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);
 
         btnLater.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,17 +88,17 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_next) {
-            int max = vPager.getChildCount();
-            if (vPager.getCurrentItem() < max-1){
-                int nextpage = vPager.getCurrentItem() + 1;
-                vPager.setCurrentItem(nextpage, true);
+            int max = viewPager.getChildCount();
+            if (viewPager.getCurrentItem() < max-1){
+                int nextpage = viewPager.getCurrentItem() + 1;
+                viewPager.setCurrentItem(nextpage, true);
             }
             return true;
 
         }else if (id == R.id.action_previous){
-            if (vPager.getCurrentItem() > 0){
-                int previouspage = vPager.getCurrentItem() - 1;
-                vPager.setCurrentItem(previouspage, true);
+            if (viewPager.getCurrentItem() > 0){
+                int previouspage = viewPager.getCurrentItem() - 1;
+                viewPager.setCurrentItem(previouspage, true);
             }
             return true;
 
@@ -115,12 +117,34 @@ public class MainActivity extends AppCompatActivity {
 
         Random randomno = new Random();
         int page = randomno.nextInt(3);
-        if (page != vPager.getCurrentItem()){
-            vPager.setCurrentItem(page, true);
+        if (page != viewPager.getCurrentItem()){
+            viewPager.setCurrentItem(page, true);
         }else{
             setRandomPage();
         }
 
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        SharedPreferences.Editor prefEdit = prefs.edit();
+        currentFragment = viewPager.getCurrentItem();
+        prefEdit.putInt("last", currentFragment);
+        prefEdit.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        currentFragment = prefs.getInt("last", 0);
+        viewPager.setCurrentItem(currentFragment);
 
     }
 }
