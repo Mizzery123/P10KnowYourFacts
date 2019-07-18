@@ -18,14 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="The concentration of salt in seawater (salinity) is about 35 parts per thousand."
+            android:text="Poker fiends have a slightly better chance of laying down a straight flush: Try 72,192 to 1. "
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Stated in another way, about 3.5 percent of the weight of seawater comes from the dissolved salts; in a cubic mile of seawater, the weight of the salt (in the form of sodium chloride) would be about 120 million tons."
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:text="Out of the 7,462 distinct five-card poker hands, you have a 42% chance of getting a single pair though."
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
         <Button

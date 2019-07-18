@@ -19,23 +19,23 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ostriches can run faster than horses"
             android:layout_marginBottom="10dp"
+            android:text="The astronaut insists he actually stated, &quot;That's one small step for a man, one giant leap for mankind.&quot;"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Push into the crocodile's eyeballs to let you go"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:text="&quot;That's the only way the statement makes any sense,&quot; Armstrong told biographer James Hansen. "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Fleas can jump up to 200 times their height, equivalent to man jumping the Empire State Building"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:text='And for the record, no real astronaut ever uttered "Houston, we have a problem" '
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <Button
             android:id="@+id/btnColor"
